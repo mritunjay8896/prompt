@@ -1,0 +1,268 @@
+Build a React + D3.js + Three.js AI Documentary Map Animation Engine.
+
+Goal:
+Create a web application that generates YouTube-style animated geography/data visualization videos.
+
+Tech stack:
+- React + Vite
+- D3.js for 2D maps and data visualization
+- Three.js + React Three Fiber for 3D rotating globe
+- TopoJSON / GeoJSON for country boundaries
+- FFmpeg/WebCodecs for video export
+
+Project structure:
+
+src/
+
+components/
+    Globe.jsx
+    WorldMap.jsx
+    MapEffects.jsx
+    Timeline.jsx
+    ControlPanel.jsx
+    VideoExporter.jsx
+
+data/
+    countryData.json
+    routes.json
+
+utils/
+    colorScale.js
+    geoHelpers.js
+
+
+Features:
+
+1. 3D Rotating Globe
+
+Create a Three.js globe:
+
+- Realistic earth sphere
+- Rotation animation
+- Mouse drag rotation
+- Zoom in/out
+- Camera controls
+- Smooth camera movement
+
+Use:
+@react-three/fiber
+@react-three/drei
+
+
+2. 2D D3 World Map
+
+Create SVG based world map:
+
+- Load countries from world-atlas TopoJSON
+- Draw country borders
+- Hover country
+- Show country name
+- Click country
+- Highlight selected country
+
+
+3. Country Data Visualization
+
+Create JSON driven system:
+
+Example:
+
+countryData.json
+
+{
+ "India":{
+   "1950":350000000,
+   "2025":1400000000
+ },
+
+ "USA":{
+   "1950":150000000,
+   "2025":340000000
+ }
+}
+
+
+Use D3 scale:
+
+- Low value = light color
+- High value = dark color
+
+Animate color changes when year changes.
+
+
+4. Timeline System
+
+Create documentary timeline:
+
+Controls:
+
+- Year slider 1950-2025
+- Play button
+- Pause button
+- Speed control
+- Auto animation
+
+Example:
+
+1950
+ ↓
+1960
+ ↓
+1970
+ ↓
+2025
+
+
+5. Animated Routes
+
+Create curved animated arrows like YouTube documentaries.
+
+Example:
+
+India → USA migration
+
+Features:
+
+- Bezier curved line
+- Moving dashed animation
+- Arrow head
+- Glow effect
+- Labels
+
+
+routes.json
+
+[
+{
+"from":"India",
+"to":"USA",
+"type":"migration",
+"color":"red"
+}
+]
+
+
+6. Country Zoom Animation
+
+When selecting a country:
+
+Example:
+Click India
+
+Animation:
+
+World view
+      ↓
+Camera zoom
+      ↓
+India highlighted
+      ↓
+Data animation starts
+
+
+7. AI Ready JSON Architecture
+
+Do not hardcode animations.
+
+Create a JSON animation engine.
+
+Example AI output:
+
+{
+"scene":"population_growth",
+
+"yearStart":1950,
+
+"yearEnd":2025,
+
+"highlight":[
+"India"
+],
+
+"routes":[
+{
+"from":"India",
+"to":"USA"
+}
+],
+
+"camera":{
+"zoom":"India"
+}
+
+}
+
+
+The renderer should read this JSON and create animation.
+
+
+8. Video Export
+
+Add recording system:
+
+Browser canvas
+        ↓
+Capture frames
+        ↓
+MediaRecorder
+        ↓
+WebM
+
+Also add FFmpeg pipeline:
+
+frames
+ ↓
+FFmpeg
+ ↓
+MP4
+
+
+9. UI
+
+Create professional dashboard:
+
+Left panel:
+
+- Upload JSON
+- Select animation type
+- Select country
+- Timeline controls
+
+
+Center:
+
+- Globe/map preview
+
+
+Right panel:
+
+- Animation settings
+- Export button
+
+
+10. Code Quality
+
+Requirements:
+
+- Use reusable React components
+- No single huge file
+- Clean folder structure
+- Add comments
+- Use async loading for map data
+- Make components configurable
+
+
+Final result should allow:
+
+User enters:
+
+"Show India's population growth from 1950 to 2025"
+
+System creates:
+
+- rotating globe intro
+- zoom to India
+- country color change
+- animated timeline
+- routes/arrows if needed
+- exportable documentary video
